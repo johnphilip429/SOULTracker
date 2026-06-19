@@ -2,20 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --snow-ice:   rgba(255,255,255,0.10);
+  --snow-ice2:  rgba(255,255,255,0.16);
+  --snow-surf:  rgba(255,255,255,0.05);
+  --snow-surf2: rgba(255,255,255,0.08);
+  --cat-gaming: #A855F7;
+  --cat-office: #3B82F6;
+  --cat-faith:  #F59E0B;
+  --cat-gym:    #14B8A6;
+}
+
 @layer base {
   body {
-    @apply text-base text-text-main leading-relaxed;
+    background-color: #060D1A;
+    color: #EEF2FF;
+    @apply font-sans leading-relaxed text-base;
   }
 }
 
-/* Custom scrollbar for webkit */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(92, 141, 137, 0.3);
+  background-color: rgba(255,255,255,0.10);
   border-radius: 20px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

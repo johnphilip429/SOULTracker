@@ -7,14 +7,33 @@ import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 
 const goalPrompts = [
-    "What is the smallest step you can take right now?",
-    "Who can you ask for help or advice?",
-    "Why is this goal important to you today?",
-    "Visualize the feeling of completing this.",
-    "Can you break this down into a 5-minute task?",
-    "What distraction can you remove to focus on this?",
-    "Is there a different approach you haven't tried?",
-    "Set a timer for 20 minutes and just start."
+    'What is the smallest kind step you can take right now?',
+    'Can the next step be just five minutes?',
+    'What would a gentle first version look like?',
+    'What is the one thing that would make everything else easier?',
+    'If you could only do one thing for this goal today, what would it be?',
+    'What does good enough for today look like?',
+    'What would you do if you knew you could not fail?',
+    'Why does this goal matter to your alignment?',
+    'What would your future self thank you for doing today?',
+    'What does success actually look like in concrete, daily terms?',
+    'How does this goal serve someone other than yourself?',
+    'What value does achieving this reflect about who you want to be?',
+    'Is this goal pulling you forward, or pushing you away from something?',
+    'What is the one thing quietly blocking this goal?',
+    'What could you remove to make space?',
+    'What assumption are you making that might not be true?',
+    'What would you advise a close friend in this exact situation?',
+    'What part of this feels hardest, and why?',
+    'Is there a simpler version of this goal that still matters?',
+    'Who could support you with this today?',
+    'Who has already done something like this that you could learn from?',
+    'What resource, tool, or person are you not yet using?',
+    'What have you already done toward this, even if it feels small?',
+    'What would done for today look like?',
+    'What does 10% progress look like, and can you hit that today?',
+    'What is the next single physical action you can take?',
+    'What would make this feel less like work and more like a game?',
 ];
 
 export default function Goals() {
@@ -50,7 +69,7 @@ export default function Goals() {
     return (
         <div className="p-6 space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-light text-primary">Key Goals</h1>
+                <h1 className="text-2xl font-display text-text-main">Key Goals</h1>
                 <Button onClick={() => setIsAdding(true)} className="px-3 py-2">
                     <Plus size={20} />
                 </Button>
@@ -58,10 +77,10 @@ export default function Goals() {
 
             {isAdding && (
                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-                    <Card className="bg-white border-2 border-primary/10 mb-4">
+                    <Card className="bg-surface/90 border border-primary/10 mb-4">
                         <form onSubmit={handleAdd} className="space-y-4">
                             <Input
-                                placeholder="What is your main focus? (e.g. Lose 10lbs)"
+                                placeholder="What matters most right now?"
                                 value={newGoal}
                                 onChange={(e) => setNewGoal(e.target.value)}
                                 autoFocus
@@ -78,20 +97,20 @@ export default function Goals() {
             <div className="space-y-3">
                 {goals.length === 0 && !isAdding && (
                     <div className="text-center py-10 opacity-50">
-                        <p>No goals defined. Set a compass for your week.</p>
+                        <p>No goals yet. Set a gentle compass for the week.</p>
                     </div>
                 )}
 
                 {goals.map(goal => (
                     <motion.div key={goal.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <Card className={`p-0 overflow-hidden transition-all ${goal.completed ? 'opacity-70 bg-gray-50' : 'bg-white border-l-4 border-l-primary'}`}>
+                        <Card className={`p-0 overflow-hidden transition-all ${goal.completed ? 'opacity-70 bg-primary/5' : 'bg-surface/90 border-l-4 border-l-primary'}`}>
                             <div className="p-5 flex items-start justify-between">
                                 <div className="flex gap-4 items-start">
                                     <button onClick={() => toggleGoal(goal)} className="mt-1 text-primary hover:scale-110 transition-transform">
                                         {goal.completed ? <CheckSquare /> : <Square />}
                                     </button>
                                     <div>
-                                        <h3 className={`font-medium text-lg leading-tight ${goal.completed ? 'line-through text-gray-400' : ''}`}>{goal.title}</h3>
+                                        <h3 className={`font-medium text-lg leading-tight ${goal.completed ? 'line-through text-text-muted' : ''}`}>{goal.title}</h3>
                                         <span className="text-xs uppercase tracking-wide text-text-muted mt-1 inline-block">
                                             {goal.category}
                                         </span>
@@ -101,14 +120,14 @@ export default function Goals() {
                                 <div className="flex flex-col gap-2">
                                     <button
                                         onClick={() => getRandomPrompt(goal.id)}
-                                        className={`p-2 rounded-full transition-colors ${activePrompt === goal.id ? 'bg-yellow-100 text-yellow-600' : 'hover:bg-gray-100 text-gray-400'}`}
+                                        className={`p-2 rounded-full transition-colors ${activePrompt === goal.id ? 'bg-primary/10 text-primary' : 'hover:bg-primary/5 text-text-muted'}`}
                                         title="Get a suggestion"
                                     >
                                         <Lightbulb size={18} />
                                     </button>
                                     <button
                                         onClick={() => deleteGoal(goal.id)}
-                                        className="p-2 text-gray-300 hover:text-red-400 hover:bg-red-50 rounded-full transition-colors"
+                                        className="p-2 text-text-muted/40 hover:text-red-400 hover:bg-red-50 rounded-full transition-colors"
                                     >
                                         <Trash2 size={18} />
                                     </button>
@@ -122,10 +141,10 @@ export default function Goals() {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: 'auto', opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        className="bg-yellow-50 px-5 overflow-hidden"
+                                        className="bg-primary/5 px-5 overflow-hidden"
                                     >
-                                        <div className="py-3 text-sm text-yellow-800 flex items-start gap-2">
-                                            <span className="font-bold">✨ Try this:</span>
+                                        <div className="py-3 text-sm text-text-main flex items-start gap-2">
+                                            <span className="font-bold">Try this:</span>
                                             <span>{goalPrompts[Math.floor(Math.random() * goalPrompts.length)]}</span>
                                         </div>
                                     </motion.div>

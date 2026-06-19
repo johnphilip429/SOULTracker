@@ -5,8 +5,9 @@ export function Card({ children, className, onClick }) {
         <div
             onClick={onClick}
             className={cn(
-                "bg-white rounded-2xl shadow-sm border border-gray-100 p-5 transition-shadow",
-                onClick && "cursor-pointer hover:shadow-md active:bg-gray-50",
+                "rounded-2xl border p-5 transition-all backdrop-blur-md",
+                "bg-[var(--snow-surf)] border-[var(--snow-ice)]",
+                onClick && "cursor-pointer hover:bg-[var(--snow-surf2)] active:scale-[0.99]",
                 className
             )}
         >

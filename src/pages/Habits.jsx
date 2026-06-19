@@ -4,14 +4,11 @@ import { useHabitStore } from '../store/useHabitStore';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { format } from 'date-fns';
 
 export default function Habits() {
-    const { habits, addHabit, deleteHabit, toggleHabitCompletion } = useHabitStore();
+    const { habits, addHabit, deleteHabit } = useHabitStore();
     const [isAdding, setIsAdding] = useState(false);
     const [newHabitTitle, setNewHabitTitle] = useState('');
-
-    const today = format(new Date(), 'yyyy-MM-dd');
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -24,17 +21,17 @@ export default function Habits() {
     return (
         <div className="p-6 space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-light text-primary">My Habits</h1>
+                <h1 className="text-2xl font-display text-text-main">Daily Anchors</h1>
                 <Button onClick={() => setIsAdding(true)} className="px-3 py-2">
                     <Plus size={20} />
                 </Button>
             </div>
 
             {isAdding && (
-                <Card className="bg-white border-2 border-primary/10">
+                <Card className="bg-surface/90 border border-primary/10">
                     <form onSubmit={handleAdd} className="space-y-4">
                         <Input
-                            placeholder="Habit name (e.g. Read Bible, Gym)"
+                            placeholder="Habit name (e.g., Read, Walk, Pray)"
                             value={newHabitTitle}
                             onChange={(e) => setNewHabitTitle(e.target.value)}
                             autoFocus
@@ -50,7 +47,7 @@ export default function Habits() {
             <div className="space-y-3">
                 {habits.length === 0 && !isAdding && (
                     <div className="text-center py-10 opacity-50">
-                        <p>No habits yet. Start simple!</p>
+                        <p>No anchors yet. Start with one small habit.</p>
                     </div>
                 )}
 
@@ -63,7 +60,7 @@ export default function Habits() {
                             <div>
                                 <h3 className="font-medium">{habit.title}</h3>
                                 <div className="flex items-center text-xs text-text-muted mt-1 gap-2">
-                                    <div className="flex items-center text-orange-500">
+                                    <div className="flex items-center text-primary">
                                         <Flame size={12} className="mr-0.5" /> {streak} days
                                     </div>
                                     <span>• {habit.frequency}</span>
@@ -73,7 +70,7 @@ export default function Habits() {
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={() => deleteHabit(habit.id)}
-                                    className="text-gray-300 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-2"
+                                    className="text-text-muted/40 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-2"
                                 >
                                     <Trash2 size={18} />
                                 </button>

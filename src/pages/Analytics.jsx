@@ -35,13 +35,13 @@ export default function Analytics() {
 
     return (
         <div className="p-6 space-y-8">
-            <h1 className="text-2xl font-light text-primary">Your Progress</h1>
+            <h1 className="text-2xl font-display text-text-main">Your Progress</h1>
 
-            <Card className="bg-primary text-white p-6">
+            <Card className="bg-primary/10 text-text-main p-6">
                 <div className="text-center">
-                    <p className="text-primary-foreground/80 text-sm mb-1">Weekly Alignment</p>
-                    <div className="text-5xl font-light">{alignmentScore}%</div>
-                    <p className="text-xs mt-2 opacity-80">Based on habit consistency</p>
+                    <p className="text-text-muted text-sm mb-1">Weekly Alignment</p>
+                    <div className="text-5xl font-display text-primary">{alignmentScore}%</div>
+                    <p className="text-xs mt-2 text-text-muted">Based on habit consistency</p>
                 </div>
             </Card>
 
@@ -50,14 +50,14 @@ export default function Analytics() {
                 <div className="h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data}>
-                            <XAxis dataKey="name" axisLine={false} tickLine={false} stroke="#888" fontSize={12} />
+                            <XAxis dataKey="name" axisLine={false} tickLine={false} stroke="#7A857D" fontSize={12} />
                             <Tooltip
-                                cursor={{ fill: '#f4f4f5' }}
+                                cursor={{ fill: '#f3f1ec' }}
                                 contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                             />
                             <Bar dataKey="completed" radius={[4, 4, 0, 0]}>
                                 {data.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill="#5C8D89" />
+                                    <Cell key={`cell-${index}`} fill="#5F6F63" />
                                 ))}
                             </Bar>
                         </BarChart>

@@ -80,8 +80,8 @@ export default function Onboarding() {
     };
 
     return (
-        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
-            <div className="w-full max-w-md">
+        <div className="min-h-screen bg-background bg-calm flex flex-col items-center justify-center p-6">
+            <div className="w-full max-w-lg">
                 <div className="flex justify-between mb-8 opacity-50">
                     {steps.map((step, idx) => (
                         <div key={step.id} className={`h-1 flex-1 mx-1 rounded-full bg-primary ${idx <= currentStep ? '' : 'opacity-20'}`} />
@@ -98,8 +98,8 @@ export default function Onboarding() {
                     >
                         {currentStep === 0 && (
                             <div className="text-center space-y-6">
-                                <h1 className="text-3xl font-light text-primary">SoulTrack Aligned</h1>
-                                <p className="text-text-muted">A gentle space for your goals, habits, and peace of mind.</p>
+                                <h1 className="text-3xl font-display text-text-main">SoulTracker</h1>
+                                <p className="text-text-muted">A calm, alignment-first space for your day.</p>
                                 <div className="pt-4">
                                     <Input
                                         placeholder="What should we call you?"
@@ -115,14 +115,14 @@ export default function Onboarding() {
                         {currentStep === 1 && (
                             <div className="space-y-6">
                                 <div className="text-center">
-                                    <h2 className="text-2xl font-light text-primary">Customize your space</h2>
-                                    <p className="text-text-muted mt-2">Would you like to include faith-based spiritual encouragement?</p>
+                                    <h2 className="text-2xl font-display text-text-main">Customize your space</h2>
+                                    <p className="text-text-muted mt-2">Would you like faith-based encouragement woven in?</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-4 pt-4">
                                     <Card
                                         onClick={() => !settings.faithMode && toggleFaithMode()}
-                                        className={`border-2 ${settings.faithMode ? 'border-primary bg-primary/5' : 'border-transparent'}`}
+                                        className={`border ${settings.faithMode ? 'border-primary bg-primary/5' : 'border-primary/10'}`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span className="font-medium">Yes, include Faith content</span>
@@ -132,7 +132,7 @@ export default function Onboarding() {
 
                                     <Card
                                         onClick={() => settings.faithMode && toggleFaithMode()}
-                                        className={`border-2 ${!settings.faithMode ? 'border-primary bg-primary/5' : 'border-transparent'}`}
+                                        className={`border ${!settings.faithMode ? 'border-primary bg-primary/5' : 'border-primary/10'}`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span className="font-medium">No, keep it secular</span>
@@ -146,8 +146,8 @@ export default function Onboarding() {
                         {currentStep === 2 && (
                             <div className="space-y-6">
                                 <div className="text-center">
-                                    <h2 className="text-2xl font-light text-primary">Let's start small</h2>
-                                    <p className="text-text-muted mt-2">Pick 2-3 habits to anchor your day.</p>
+                                    <h2 className="text-2xl font-display text-text-main">Let’s start small</h2>
+                                    <p className="text-text-muted mt-2">Pick 2–3 habits to anchor your day.</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-2 pt-2 max-h-[50vh] overflow-y-auto">
