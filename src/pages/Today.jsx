@@ -15,6 +15,14 @@ import { Input } from '../components/Input';
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
+function fmt12(t) {
+    if (!t) return '';
+    const [h, m] = t.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    return `${h12}:${String(m).padStart(2, '0')} ${period}`;
+}
+
 const EMPTY_FORM = {
     title: '',
     category: 'Life',
@@ -507,10 +515,10 @@ export default function Today() {
                                             <span className={`text-sm ${task.completed ? 'line-through text-snow-muted' : 'text-snow-primary'}`}>{task.title}</span>
                                             <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                                                 <span className="text-[10px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full" style={{ color: cat.color, backgroundColor: `${cat.color}20` }}>{cat.label}</span>
-                                                {task.scheduled_start && <span className="text-[10px] text-snow-muted font-mono">{task.scheduled_start}{task.scheduled_end ? `–${task.scheduled_end}` : ''}</span>}
+                                                {task.scheduled_start && <span className="text-[10px] text-snow-muted font-mono">{fmt12(task.scheduled_start)}{task.scheduled_end ? `–${fmt12(task.scheduled_end)}` : ''}</span>}
                                                 {isStarted && !task.completed && (
                                                     <span className="text-[9px] text-snow-muted/50 font-mono">
-                                                        ▶ {format(new Date(task.actual_start), 'HH:mm')}
+                                                        ▶ {format(new Date(task.actual_start), 'h:mm a')}
                                                     </span>
                                                 )}
                                                 <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: pri.color }} title={pri.label + ' priority'} />
@@ -520,7 +528,7 @@ export default function Today() {
                                         {!task.completed && !isStarted && (
                                             <button
                                                 onClick={() => startTask(task.id)}
-                                                className="shrink-0 p-1.5 text-snow-muted/30 hover:text-green-400 transition-colors"
+                                                className="shrink-0 p-1.5 text-snow-muted/60 hover:text-green-400 transition-colors"
                                                 title="Mark as started"
                                             >
                                                 <Play size={14} />
@@ -560,7 +568,7 @@ export default function Today() {
                                             <span className={`text-sm ${done ? 'line-through text-snow-muted' : 'text-snow-primary'}`}>{task.title}</span>
                                             <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                                                 <span className="text-[10px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full" style={{ color: cat.color, backgroundColor: `${cat.color}20` }}>{cat.label}</span>
-                                                {task.scheduled_start && <span className="text-[10px] text-snow-muted font-mono">{task.scheduled_start}{task.scheduled_end ? `–${task.scheduled_end}` : ''}</span>}
+                                                {task.scheduled_start && <span className="text-[10px] text-snow-muted font-mono">{fmt12(task.scheduled_start)}{task.scheduled_end ? `–${fmt12(task.scheduled_end)}` : ''}</span>}
                                                 <RefreshCw size={10} className="text-snow-muted/50 shrink-0" title="Recurring" />
                                                 <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: pri.color }} title={pri.label + ' priority'} />
                                             </div>
