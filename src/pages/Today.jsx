@@ -528,13 +528,13 @@ export default function Today() {
                                         {!task.completed && !isStarted && (
                                             <button
                                                 onClick={() => startTask(task.id)}
-                                                className="shrink-0 p-1.5 text-snow-muted/60 hover:text-green-400 transition-colors"
+                                                className="shrink-0 p-1.5 icon-btn-start"
                                                 title="Mark as started"
                                             >
                                                 <Play size={14} />
                                             </button>
                                         )}
-                                        <button onClick={() => deleteTask(task.id)} className="shrink-0 p-1.5 text-snow-muted/30 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Delete task">
+                                        <button onClick={() => deleteTask(task.id)} className="shrink-0 p-1.5 icon-btn-delete" aria-label="Delete task">
                                             <Trash2 size={16} />
                                         </button>
                                     </div>
@@ -573,7 +573,7 @@ export default function Today() {
                                                 <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: pri.color }} title={pri.label + ' priority'} />
                                             </div>
                                         </div>
-                                        <button onClick={() => deleteRecurringTask(task.id)} className="shrink-0 p-1.5 text-snow-muted/30 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Delete recurring task">
+                                        <button onClick={() => deleteRecurringTask(task.id)} className="shrink-0 p-1.5 icon-btn-delete" aria-label="Delete recurring task">
                                             <Trash2 size={16} />
                                         </button>
                                     </div>

@@ -39,3 +39,27 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Touch-aware task action icon buttons.
+   On hover-capable devices (mouse/trackpad), color fires on hover only.
+   On touch devices, resting opacity is raised so the icon is visible without
+   any interaction, and :active gives instant tap feedback with the accent color. */
+.icon-btn-start,
+.icon-btn-delete {
+  color: rgba(77, 104, 130, 0.60); /* snow-muted/60 */
+  transition: color 150ms ease;
+}
+
+@media (hover: hover) {
+  .icon-btn-start:hover  { color: #4ade80; } /* green-400 */
+  .icon-btn-delete:hover { color: #f87171; } /* red-400   */
+}
+
+@media (hover: none) {
+  .icon-btn-start,
+  .icon-btn-delete {
+    color: rgba(77, 104, 130, 0.80); /* more legible at rest on touch */
+  }
+  .icon-btn-start:active  { color: #4ade80; }
+  .icon-btn-delete:active { color: #f87171; }
+}
