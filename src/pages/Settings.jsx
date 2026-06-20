@@ -1,7 +1,9 @@
 import React from 'react';
+import { Download } from 'lucide-react';
 import { useUserStore } from '../store/useUserStore';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
+import { exportAllData } from '../lib/exportData';
 // import { Switch } from 'lucide-react'; // Conceptual switch, implementing toggle manually
 
 export default function Settings() {
@@ -40,6 +42,20 @@ export default function Settings() {
                     <div className={`w-12 h-7 rounded-full transition-colors flex items-center px-1 ${settings.faithMode ? 'bg-primary' : 'bg-primary/20'}`}>
                         <div className={`w-5 h-5 bg-white rounded-full transition-transform ${settings.faithMode ? 'translate-x-5' : ''}`} />
                     </div>
+                </Card>
+            </section>
+
+            <section className="space-y-4">
+                <h2 className="text-lg font-medium text-text-muted uppercase tracking-wider text-sm">Data</h2>
+                <Card className="p-4 space-y-3">
+                    <div>
+                        <h3 className="font-medium text-snow-primary">Export Data</h3>
+                        <p className="text-sm text-text-muted mt-0.5">Download a backup of all your tasks, habits, and logs.</p>
+                    </div>
+                    <Button variant="primary" className="gap-2 w-full sm:w-auto" onClick={exportAllData}>
+                        <Download size={16} />
+                        Export JSON
+                    </Button>
                 </Card>
             </section>
 
